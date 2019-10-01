@@ -1,7 +1,7 @@
 # MySQL Finance Dataset Lab
 
 This is using a dockerized MySQL database with all tables loaded.
-Have a look at the attached [PDF](berka.pdf) for more information on the tables.
+Have a look at the attached [PDF](berka.pdf) for more information on the tables and their relations.
 
 ## Requirements:
 Docker
@@ -9,13 +9,13 @@ Docker
 ## Setting up the database:
 First, clone this repo!
 
-We are using the official mysql docker image with a handful of setting. From the root of the repo, run this in your command line to get the container running:
+We are using the official mysql docker image with a handful of additional settings. From the root of the repo, run this in your command line to get the container running:
 
 ```bash
 docker run -p 3306:3306 --name mysql_finance -v "$(pwd)"/initdb:/initdb -e MYSQL_ALLOW_EMPTY_PASSWORD=yes -d mysql --secure-file-priv=""
 ```
 
-On success, it should print the container id. You can also manually check if your container is running:
+On success, it should print the container id. You can also manually check if your container is running, like so:
 
 ```bash
 docker ps -a
@@ -23,7 +23,7 @@ docker ps -a
 
 You should find a line with your container id and status `Up`.
 
-Next up, we want to initlaize the database and load the datasets. Execute the mounted shell script like so (this might take a couple of minutes):
+Next up, we want to initlaize the database by loading the datasets. Execute the mounted shell script like so (this might take a couple of minutes):
 
 ```bash
 docker exec -it mysql_finance bash -c "./initdb/init_db.sh"
@@ -79,4 +79,14 @@ Port: 3306
     + Follow instructions from above again (starting from `docker run ...`)
 
 - In the docker run command from above, we are mapping the mysql standard port to the same one, which can cause conflicts if you have another mysql server running simultaneously. Either shut it down or change the port mapping.
-- 
+
+## Contribute:
+Besides coming up with Lab exercises, there are many other TODOs. If you want to contribute, please submit your changes through a PR and a detailed description of your changes. Things to work on:
+- Creating exercises using the data
+- Improve table schemas
+    + Define relationships (Foreign Keys, Primary Keys)
+    + Create indexes
+    + Add useful constraints (unique, not null, etc.)
+- Cast columns storing dates from `ÌNT` to `DATE` or `TIMESTAMP` types
+- Create consistennt `NULL`s. Some of them might currently be represented as empty spaces, `" "`, or otherwise
+- Instructions on how to add a volume to have a persistent database

@@ -6,7 +6,7 @@ mysql -e "CREATE USER IF NOT EXISTS ironhack IDENTIFIED WITH mysql_native_passwo
 mysql -e "GRANT ALL PRIVILEGES ON  * . * TO 'ironhack';"
 
 echo "Initialize database"
-mysql < initdb/init.sql
+mysql < initdb/mysql_dump.sql
 
 echo "Database initialized"
 

@@ -4,10 +4,19 @@ This is using a dockerized MySQL database with all tables loaded.
 Have a look at the attached [PDF](berka.pdf) for more information on the tables and their relations.
 
 ## Requirements:
-Docker
+Docker.
+
+Alternatively, you can use the mysql dump file to load the dataset into your existing MySQL database yourself.
 
 ## Setting up the database:
 First, clone this repo!
+
+## A. Using the mysql dump file:
+If you already have an up and running MySQL server on your localhost, you can simply download the mysql dump file (`/initdb/mysql_dump.sql`) and run it yourself. The file creates a database `bank` with all tables and records.
+
+## B. Using Docker:
+
+If you don't have MySQL running locally follow these instructions. Make sure Docker is running. 
 
 We are using the official mysql docker image with a handful of additional settings. From the root of the repo, run this in your command line to get the container running:
 
